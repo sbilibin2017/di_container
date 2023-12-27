@@ -1,5 +1,6 @@
 ```
 from typing import Protocol
+from functools import cache
 
 class IRepository(Protocol):
     def say_hello(self) -> str:
@@ -56,7 +57,8 @@ app = FastAPI()
 # прикрепление di-контейнера к инстансу приложения
 app.state.di_container = di_container
 
-# зависимость FastAPI
+# зависимость FastAPI(кешируем зависимость для реализации синглтона)
+@cache
 def get_service(app: FastAPI()) -> IService:
     return app.state.di_container.resolve("service")
 
