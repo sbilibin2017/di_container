@@ -61,7 +61,7 @@ def get_service(app: Fastapi()) -> IService:
     return app.state.di_container.resolve("service")
 
 # роутер
-@router
+@router("/")
 async def get_data(
     service: IService = Depends(get_service)
 ) -> ResponseSchema:
