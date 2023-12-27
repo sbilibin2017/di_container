@@ -57,7 +57,7 @@ app = FastAPI()
 app.state.di_container = di_container
 
 # зависимость FastAPI
-def get_service(app: Fastapi()) -> IService:
+def get_service(app: FastAPI()) -> IService:
     return app.state.di_container.resolve("service")
 
 # роутер
